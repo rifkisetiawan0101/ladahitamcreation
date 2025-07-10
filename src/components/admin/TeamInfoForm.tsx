@@ -52,7 +52,7 @@ export default function TeamInfoForm({ teamInfo }: { teamInfo: TeamInfo }) {
             router.refresh();
         
         } catch (_error) {
-            console.error(error);
+            console.error(_error);
             alert('Error updating team info.');
         } finally {
             setIsSubmitting(false);

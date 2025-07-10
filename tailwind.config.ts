@@ -41,15 +41,15 @@ const config: Config = {
                 lineHeight: '1.5',
             },
             h1: {
-                fontFamily: 'var(--font-cinzel)',
+                fontFamily: 'var(--font-poppins)',
                 fontSize: '2.25rem', // 4xl
             },
             h2: {
-                fontFamily: 'var(--font-cinzel)',
+                fontFamily: 'var(--font-poppins)',
                 fontSize: '1.875rem', // 3xl
             },
             h3: {
-                fontFamily: 'var(--font-cinzel)',
+                fontFamily: 'var(--font-poppins)',
                 fontSize: '1.5rem', // 2xl
             },
             a: {

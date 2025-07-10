@@ -45,7 +45,7 @@ export default function MemberForm({ member }: MemberFormProps) {
             router.push('/admin/members');
             router.refresh();
         } catch (_error) {
-            console.error(error);
+            console.error(_error);
         } finally {
             setIsSubmitting(false);
         }

@@ -55,7 +55,7 @@ export default function ProjectForm({ project }: ProjectFormProps) {
             router.push('/admin/projects');
             router.refresh();
         } catch (_error) {
-            console.error(error);
+            console.error(_error);
         } finally {
             setIsSubmitting(false);
         }
