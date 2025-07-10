@@ -25,7 +25,7 @@ export default function ProjectActionButtons({ projectSlug }: Props) {
 
                 // Muat ulang data di halaman setelah berhasil menghapus
                 router.refresh();
-            } catch (error) {
+            } catch (_error) {
                 console.error(error);
                 alert("Error deleting project.");
             }

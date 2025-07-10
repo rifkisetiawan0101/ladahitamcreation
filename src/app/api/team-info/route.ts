@@ -11,7 +11,7 @@ export async function GET() {
             where: { id: TEAM_INFO_ID },
         });
         return NextResponse.json(teamInfo);
-    } catch (error) {
+    } catch (_error) {
         return NextResponse.json({ message: "Failed to fetch team info" }, { status: 500 });
     }
 }
@@ -31,7 +31,7 @@ export async function PUT(request: Request) {
             },
         });
         return NextResponse.json(updatedTeamInfo);
-    } catch (error) {
+    } catch (_error) {
         console.error("API PUT Error:", error);
         return NextResponse.json({ message: "Failed to update team info" }, { status: 500 });
     }

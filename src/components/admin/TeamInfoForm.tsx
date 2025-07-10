@@ -51,7 +51,7 @@ export default function TeamInfoForm({ teamInfo }: { teamInfo: TeamInfo }) {
             alert('Team info updated successfully!');
             router.refresh();
         
-        } catch (error) {
+        } catch (_error) {
             console.error(error);
             alert('Error updating team info.');
         } finally {

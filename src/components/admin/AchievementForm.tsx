@@ -44,7 +44,7 @@ export default function AchievementForm({ achievement }: AchievementProps) {
 
             router.push('/admin/achievements');
             router.refresh();
-        } catch (error) {
+        } catch (_error) {
             console.error(error);
         } finally {
             setIsSubmitting(false);

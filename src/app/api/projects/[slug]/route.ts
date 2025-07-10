@@ -28,7 +28,7 @@ export async function PUT(request: Request, { params }: RouteParams) {
         });
 
         return NextResponse.json(updatedProject);
-    } catch (error) {
+    } catch (_error) {
         console.error("API PUT Error:", error);
         return NextResponse.json({ message: "Failed to update project" }, { status: 500 });
     }
@@ -44,7 +44,7 @@ export async function DELETE(request: Request, { params }: RouteParams) {
         });
 
         return new NextResponse(null, { status: 204 }); // 204 No Content
-    } catch (error) {
+    } catch (_error) {
         console.error("API DELETE Error:", error);
         return NextResponse.json({ message: "Failed to delete project" }, { status: 500 });
     }

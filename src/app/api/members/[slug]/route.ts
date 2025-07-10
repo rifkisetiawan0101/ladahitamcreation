@@ -17,7 +17,7 @@ export async function PUT(request: Request, { params }: RouteParams) {
         },
     });
         return NextResponse.json(updatedMember);
-    } catch (error) {
+    } catch (_error) {
         return NextResponse.json({ message: "Failed to update member" }, { status: 500 });
     }
 }
@@ -28,7 +28,7 @@ export async function DELETE(request: Request, { params }: RouteParams) {
         const { slug } = params;
         await prisma.member.delete({ where: { slug } });
         return new NextResponse(null, { status: 204 });
-    } catch (error) {
+    } catch (_error) {
         return NextResponse.json({ message: "Failed to delete member" }, { status: 500 });
     }
 }

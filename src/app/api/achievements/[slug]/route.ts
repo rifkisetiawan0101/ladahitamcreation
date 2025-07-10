@@ -18,7 +18,7 @@ export async function PUT(request: Request, { params }: RouteParams) {
         },
     });
         return NextResponse.json(updatedAchievement);
-    } catch (error) {
+    } catch (_error) {
         return NextResponse.json({ message: "Failed to update achievement" }, { status: 500 });
     }
 }
@@ -29,7 +29,7 @@ export async function DELETE(request: Request, { params }: RouteParams) {
         const { slug } = params;
         await prisma.achievement.delete({ where: { slug } });
         return new NextResponse(null, { status: 204 });
-    } catch (error) {
+    } catch (_error) {
         return NextResponse.json({ message: "Failed to delete achievement" }, { status: 500 });
     }
 }

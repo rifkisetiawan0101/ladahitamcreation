@@ -18,7 +18,7 @@ export async function POST(request: Request) {
         });
 
         return NextResponse.json(newProject, { status: 201 });
-    } catch (error) {
+    } catch (_error) {
         console.error("API Route Error:", error); 
         return NextResponse.json(
             { message: "Failed to create projects." },
