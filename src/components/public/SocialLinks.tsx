@@ -1,6 +1,6 @@
 // src/components/public/SocialLinks.tsx
 import Link from 'next/link';
-import { Linkedin, Instagram, Gamepad2, Github } from 'lucide-react';
+import { Linkedin, Instagram, Gamepad2 } from 'lucide-react';
 
 type Socials = {
     linkedin?: string;

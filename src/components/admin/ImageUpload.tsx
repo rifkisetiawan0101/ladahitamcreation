@@ -27,7 +27,7 @@ export default function ImageUpload({ onUploadComplete }: ImageUploadProps) {
         setUploading(true);
         try {
             const fileName = `${Date.now()}_${file.name}`;
-            const { data, error } = await supabase.storage
+            const { error } = await supabase.storage
                 .from('ladahitam-assets') // Nama bucket Anda
                 .upload(fileName, file);
 
@@ -41,11 +41,15 @@ export default function ImageUpload({ onUploadComplete }: ImageUploadProps) {
             onUploadComplete(publicUrl); // Kirim URL ke komponen induk
             alert("Upload successful!");
 
-        } catch (error: any) {
-        console.error("Error uploading file:", error);
-        alert(error.message);
+        } catch (error: unknown) {
+            console.error("Error uploading file:", error);
+            if (error instanceof Error) {
+                alert(error.message);
+            } else {
+                alert("An unknown error occurred during upload.");
+            }
         } finally {
-        setUploading(false);
+            setUploading(false);
         }
     };
 
