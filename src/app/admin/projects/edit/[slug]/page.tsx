@@ -2,18 +2,13 @@
 
 import prisma from '@/lib/prisma';
 import ProjectForm from '@/components/admin/ProjectForm';
+import type { NextPage } from 'next';
 
-// Props untuk menerima parameter dari URL
 type Props = {
     params: { slug: string };
-    // searchParams: { [key: string]: string | string[] | undefined };
 };
 
-// @ts-ignore 
-export default async function EditProjectPage({ 
-    params, 
-    // searchParams 
-}: Props) {
+const EditProjectPage: NextPage<Props> = async ({ params }) => {
     const { slug } = params;
 
     // Ambil data proyek spesifik berdasarkan slug
@@ -33,3 +28,5 @@ export default async function EditProjectPage({
         </div>
     );
 }
+
+export default EditProjectPage;

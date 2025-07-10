@@ -2,18 +2,13 @@
 
 import prisma from '@/lib/prisma';
 import AchievementForm from '@/components/admin/AchievementForm';
+import type { NextPage } from 'next';
 
-// Props (error) untuk menerima parameter dari URL
 type Props = {
     params: { slug: string };
-    // searchParams: { [key: string]: string | string[] | undefined };
 };
 
-// @ts-ignore 
-export default async function EditAchievementPage({ 
-    params, 
-    // searchParams 
-}: Props) {
+const EditAchievementPage: NextPage<Props> = async ({ params }) => {
     const { slug } = params;
 
     // Ambil data proyek spesifik berdasarkan slug
@@ -33,3 +28,5 @@ export default async function EditAchievementPage({
         </div>
     );
 }
+
+export default EditAchievementPage;
