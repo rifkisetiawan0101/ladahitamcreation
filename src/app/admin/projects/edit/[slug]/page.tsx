@@ -4,15 +4,15 @@ import prisma from '@/lib/prisma';
 import ProjectForm from '@/components/admin/ProjectForm';
 
 // Props untuk menerima parameter dari URL
-interface EditProjectPageProps {
+type Props = {
     params: { slug: string };
-    searchParams: { [key: string]: string | string[] | undefined };
-}
+    // searchParams: { [key: string]: string | string[] | undefined };
+};
 
 export default async function EditProjectPage({ 
     params, 
-    searchParams 
-}: EditProjectPageProps) {
+    // searchParams 
+}: Props) {
     const { slug } = params;
 
     // Ambil data proyek spesifik berdasarkan slug

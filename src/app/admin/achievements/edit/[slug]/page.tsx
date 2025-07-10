@@ -4,15 +4,15 @@ import prisma from '@/lib/prisma';
 import AchievementForm from '@/components/admin/AchievementForm';
 
 // Props (error) untuk menerima parameter dari URL
-interface EditAchievementPageProps {
+type Props = {
     params: { slug: string };
-    searchParams: { [key: string]: string | string[] | undefined };
-}
+    // searchParams: { [key: string]: string | string[] | undefined };
+};
 
 export default async function EditAchievementPage({ 
     params, 
-    searchParams 
-}: EditAchievementPageProps) {
+    // searchParams 
+}: Props) {
     const { slug } = params;
 
     // Ambil data proyek spesifik berdasarkan slug

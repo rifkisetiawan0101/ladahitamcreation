@@ -4,15 +4,15 @@ import prisma from '@/lib/prisma';
 import MemberForm from '@/components/admin/MemberForm';
 
 // Props untuk menerima parameter dari URL
-interface EditMemberPageProps {
+type Props = {
     params: { slug: string };
-    searchParams: { [key: string]: string | string[] | undefined };
-}
+    // searchParams: { [key: string]: string | string[] | undefined };
+};
 
 export default async function EditMemberPage({ 
     params, 
-    searchParams 
-}: EditMemberPageProps) {
+    // searchParams 
+}: Props) {
     const { slug } = params;
 
     // Ambil data proyek spesifik berdasarkan slug
