@@ -13,7 +13,7 @@ export default async function HomePage() {
     const achievements = await prisma.achievement.findMany({ take: 4, orderBy: { id: 'desc' } });
 
     if (!teamInfo) {
-        return <div>Informasi tim tidak ditemukan.</div>;
+        return <div>Informasi tim tidak ditemukan</div>;
     }
     
     const socials = teamInfo.socials as { linkedin?: string; itch?: string; instagram?: string };
