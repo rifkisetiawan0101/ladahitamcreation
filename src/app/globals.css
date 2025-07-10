@@ -1,0 +1,29 @@
+/* ./src/app/globals.css */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.sparkle {
+    position: fixed;
+    background-color: #fcd34d; /* Warna amber-300 */
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 20;
+    animation: fade-out 1s forwards;
+    box-shadow: 0 0 8px #fcd34d, 0 0 12px #f59e0b;
+}
+
+@keyframes fade-out {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: scale(0) translate(
+            calc((var(--random-x, 0.5) - 0.5) * 150px), 
+            calc((var(--random-y, 0.5) - 0.5) * 150px)
+        );
+    }
+}
