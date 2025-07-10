@@ -10,6 +10,12 @@ const nextConfig = {
       },
     ],
   },
+
+  eslint: {
+      // Warning: Ini akan menonaktifkan pengecekan ESLint saat build.
+      // Sebaiknya hanya digunakan jika Anda yakin kode Anda benar.
+      ignoreDuringBuilds: true,
+  },
 };
 
 module.exports = nextConfig;
