@@ -6,7 +6,7 @@ import MemberActionButtons from '@/components/admin/MemberActionButtons';
 
 export default async function AdminMembersPage() {
     const members = await prisma.member.findMany({
-        orderBy: { createdAt: 'desc' },
+        orderBy: { id: 'desc' },
     });
 
     return (

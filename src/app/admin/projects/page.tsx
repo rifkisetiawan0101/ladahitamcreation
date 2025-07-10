@@ -6,7 +6,7 @@ import ProjectActionButtons from '@/components/admin/ProjectActionButtons';
 
 export default async function AdminProjectsPage() {
     const projects = await prisma.project.findMany({
-        orderBy: { createdAt: 'desc' },
+        orderBy: { id: 'desc' },
     });
 
     return (

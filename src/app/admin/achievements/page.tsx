@@ -6,7 +6,7 @@ import AchievementActionButtons from '@/components/admin/AchievementActionButton
 
 export default async function AdminAchievementsPage() {
     const achievements = await prisma.achievement.findMany({
-        orderBy: { createdAt: 'desc' },
+        orderBy: { id: 'desc' },
     });
 
     return (

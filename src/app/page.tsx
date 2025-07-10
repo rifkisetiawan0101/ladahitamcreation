@@ -8,9 +8,9 @@ import AchievementItem from '@/components/public/AchievementItem';
 
 export default async function HomePage() {
     const teamInfo = await prisma.teamInfo.findUnique({ where: { id: 'ladahitam_info' } });
-    const projects = await prisma.project.findMany({ take: 3, orderBy: { createdAt: 'desc' } });
-    const members = await prisma.member.findMany({ orderBy: { createdAt: 'asc' } });
-    const achievements = await prisma.achievement.findMany({ take: 4, orderBy: { createdAt: 'desc' } });
+    const projects = await prisma.project.findMany({ take: 3, orderBy: { id: 'desc' } });
+    const members = await prisma.member.findMany({ orderBy: { id: 'asc' } });
+    const achievements = await prisma.achievement.findMany({ take: 4, orderBy: { id: 'desc' } });
 
     if (!teamInfo) {
         return <div>Informasi tim tidak ditemukan.</div>;
