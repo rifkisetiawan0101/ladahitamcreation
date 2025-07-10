@@ -9,7 +9,7 @@ type Props = {
     // searchParams: { [key: string]: string | string[] | undefined };
 };
 
-// @ts-ignore Server Component type issue dengan Prisma-Postgres
+// @ts-ignore 
 export default async function EditMemberPage({ 
     params, 
     // searchParams 
