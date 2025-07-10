@@ -1,7 +1,4 @@
 // src/components/shared/Footer.tsx
-
-import Link from 'next/link';
-
 const Footer = () => {
     return (
         <footer className="border-t border-amber-300/10 bg-neutral-900">
