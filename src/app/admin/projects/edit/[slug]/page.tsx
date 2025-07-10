@@ -9,7 +9,10 @@ interface EditProjectPageProps {
     searchParams: { [key: string]: string | string[] | undefined };
 }
 
-export default async function EditProjectPage({ params }: EditProjectPageProps) {
+export default async function EditProjectPage({ 
+    params, 
+    searchParams 
+}: EditProjectPageProps) {
     const { slug } = params;
 
     // Ambil data proyek spesifik berdasarkan slug

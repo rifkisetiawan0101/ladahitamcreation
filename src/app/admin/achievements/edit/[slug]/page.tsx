@@ -9,7 +9,10 @@ interface EditAchievementPageProps {
     searchParams: { [key: string]: string | string[] | undefined };
 }
 
-export default async function EditAchievementPage({ params }: EditAchievementPageProps) {
+export default async function EditAchievementPage({ 
+    params, 
+    searchParams 
+}: EditAchievementPageProps) {
     const { slug } = params;
 
     // Ambil data proyek spesifik berdasarkan slug
