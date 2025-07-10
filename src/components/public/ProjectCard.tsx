@@ -13,7 +13,7 @@ type ProjectCardProps = {
 
 const ProjectCard = ({ project }: ProjectCardProps) => {
     // Ambil gambar pertama dari array screenshots sebagai thumbnail
-    const screenshotsArray = project.screenshots ? project.screenshots.split(',') : [];
+    const screenshotsArray = project.screenshots || [];
     const thumbnailUrl = screenshotsArray[0] || '/placeholder-image.png'; // Sediakan gambar placeholder
 
     return (

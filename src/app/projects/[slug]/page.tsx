@@ -22,7 +22,7 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
         notFound();
     }
 
-    const screenshotsArray = project.screenshots ? project.screenshots.split(',').map(s => s.trim()) : [];
+    const screenshotsArray = (project.screenshots as string[]) || [];
 
     return (
         <div className="container mx-auto px-4 py-12 md:py-20">
