@@ -37,7 +37,7 @@ export default async function HomePage() {
                 <SocialLinks socials={socials} />
             </div>
             
-            <div className="mt-6">
+            <div className="mt-8">
                 <a
                     href="#projects"
                     className="inline-flex items-center gap-2 bg-amber-400 text-sm text-neutral-800 font-bold py-3 px-5 rounded-md hover:bg-amber-500 transition-colors duration-300 shadow-lg shadow-amber-500/20 animate-pulse-glow"
