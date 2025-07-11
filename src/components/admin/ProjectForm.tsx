@@ -4,7 +4,8 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { Project } from '@prisma/client';
-import RichTextEditor from './RichTextEditor'; 
+import RichTextEditor from './RichTextEditor';
+import ImageUpload from './ImageUpload';
 
 // Update props untuk menerima data proyek (opsional)
 type ProjectFormProps = {
@@ -100,8 +101,25 @@ export default function ProjectForm({ project }: ProjectFormProps) {
             <input type="text" id="tags" value={tags} onChange={(e) => setTags(e.target.value)} className="mt-1 block w-full rounded-md border-neutral-600 bg-neutral-800 text-white"/>
         </div>
         <div>
-            <label htmlFor="screenshots" className="block text-sm font-medium text-neutral-300">Screenshot URLs (pisahkan dengan koma)</label>
-            <textarea id="screenshots" value={screenshots} onChange={(e) => setScreenshots(e.target.value)} rows={5} className="mt-1 block w-full rounded-md border-neutral-600 bg-neutral-800 text-white"/>
+            <label htmlFor="screenshots" className="block text-sm font-medium text-neutral-300">Showcase Screenshot URLs (pisahkan dengan koma)</label>
+            <textarea
+                id="screenshots"
+                value={screenshots}
+                onChange={(e) => setScreenshots(e.target.value)}
+                rows={4}
+                className="mt-1 block w-full rounded-md ..."
+                placeholder="URL akan ditambahkan setelah upload..."
+            />
+            <div className="mt-2">
+                <ImageUpload 
+                    multiple={true}
+                    uploadPath={`projects/${project?.slug || 'new-project'}`}
+                    onUploadComplete={(urls) => {
+                        const newScreenshots = screenshots ? `${screenshots}, ${urls.join(', ')}` : urls.join(', ');
+                        setScreenshots(newScreenshots);
+                    }} 
+                />
+            </div>
         </div>
         <div>
             <button type="submit" disabled={isSubmitting} className="bg-amber-300 text-neutral-900 font-bold py-2 px-4 rounded-md hover:bg-amber-400 disabled:bg-neutral-500 disabled:cursor-not-allowed">
