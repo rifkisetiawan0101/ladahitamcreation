@@ -1,6 +1,7 @@
 // src/components/public/SocialLinks.tsx
 import Link from 'next/link';
-import { Linkedin, Github, Instagram, Gamepad2, Youtube } from 'lucide-react';
+import { Linkedin, Github, Instagram, Youtube } from 'lucide-react';
+import { ItchIoIcon, BehanceIcon } from '@/assets/CustomIcons';
 
 type Socials = {
     linkedin?: string;
@@ -15,8 +16,8 @@ type Socials = {
 const iconMap: { [key in keyof Socials]: React.ElementType } = {
     linkedin: Linkedin,
     github: Github,
-    itch: Gamepad2,
-    // behance: Behance, ini ga ada icon nya
+    itch: ItchIoIcon,
+    behance: BehanceIcon,
     instagram: Instagram,
     youtube: Youtube
 };
