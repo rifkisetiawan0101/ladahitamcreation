@@ -4,6 +4,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { Achievement } from '@prisma/client';
+import ImageUpload from './ImageUpload';
 
 // Update props untuk menerima data achievement (opsional)
 type AchievementProps = {
@@ -14,6 +15,7 @@ export default function AchievementForm({ achievement }: AchievementProps) {
     const [title, setTitle] = useState('');
     const [slug, setSlug] = useState('');
     const [description, setDescription] = useState('');
+    const [logoUrl, setLogoUrl] = useState('');
     const [isSubmitting, setIsSubmitting] = useState(false);
     const router = useRouter();
 
@@ -74,6 +76,28 @@ export default function AchievementForm({ achievement }: AchievementProps) {
                 className="mt-1 block w-full rounded-md border-neutral-600 bg-neutral-800 text-white shadow-sm focus:border-amber-400 focus:ring focus:ring-amber-300 focus:ring-opacity-50"
                 required
             />
+        </div>
+        <div>
+            <label htmlFor="logoUrl" className="block text-sm font-medium text-neutral-300">Logo URL</label>
+            <input 
+                type="text" 
+                id="logoUrl" 
+                value={logoUrl} 
+                onChange={(e) => setLogoUrl(e.target.value)} 
+                className="mt-1 block w-full rounded-md text-neutral-500 ..."
+                placeholder="Or upload the file below"
+            />
+            <div className="mt-2">
+                <ImageUpload 
+                    multiple={false}
+                    uploadPath={`team-info/'}`}
+                    onUploadComplete={(urls) => {
+                        if (urls.length > 0) {
+                            setLogoUrl(urls[0]);
+                        }
+                    }} 
+                />
+            </div>
         </div>
         <div>
             <button
