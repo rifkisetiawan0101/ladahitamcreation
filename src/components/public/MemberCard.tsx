@@ -2,6 +2,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { Member } from '@prisma/client';
+import MemberSocialLinks from './SocialLinks';
 
 type MemberCardProps = {
     member: Member;
@@ -9,6 +10,7 @@ type MemberCardProps = {
 
 export default function MemberCard({ member }: MemberCardProps) {
     const imageUrl = member.pictureUrl || '/default-avatar.png';
+    const socials = member.socials as { [key: string]: string } | null;
 
     return (
         <Link 
@@ -24,7 +26,8 @@ export default function MemberCard({ member }: MemberCardProps) {
                 />
             </div>
             <h3 className="font-bold text-xl text-white">{member.name}</h3>
-            <p className="text-amber-300">{member.role}</p>
+            <p className="mb-2 text-amber-300">{member.role}</p>
+            <MemberSocialLinks socials={socials} />
         </Link>
     );
 }

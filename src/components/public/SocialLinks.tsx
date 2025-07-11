@@ -31,7 +31,7 @@ export default function SocialLinks({ socials }: { socials: Socials | null }) {
     const socialEntries = Object.entries(socials) as [keyof Socials, string][];
 
     return (
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3">
             {socialEntries.map(([platform, url]) => {
                 if (!url) return null;
                 const Icon = iconMap[platform];
@@ -46,7 +46,7 @@ export default function SocialLinks({ socials }: { socials: Socials | null }) {
                         className="text-neutral-400 transition-colors hover:text-amber-300"
                     >
                         <span className="sr-only">{platform}</span>
-                        <Icon className="h-6 w-6" />
+                        <Icon className="h-5 w-5" />
                     </Link>
                 );
             })}

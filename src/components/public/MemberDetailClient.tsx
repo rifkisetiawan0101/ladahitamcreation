@@ -30,7 +30,7 @@ export default function MemberDetailClient({ member }: MemberDetailClientProps) 
                     </div>
                     <div>
                         <h1 className="font-display text-4xl md:text-5xl font-bold text-amber-300 text-center md:text-left">{member.name}</h1>
-                        <p className="mt-2 text-xl text-neutral-300 text-center md:text-left">{member.role}</p>
+                        <p className="my-2 text-xl text-neutral-300 text-center md:text-left">{member.role}</p>
                         <MemberSocialLinks socials={socials} />
                     </div>
                 </header>
