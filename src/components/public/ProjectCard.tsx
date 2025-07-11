@@ -12,9 +12,10 @@ type ProjectCardProps = {
 };
 
 const ProjectCard = ({ project }: ProjectCardProps) => {
-    // Ambil gambar pertama dari array screenshots sebagai thumbnail
     const screenshotsArray = project.screenshots || [];
-    const thumbnailUrl = screenshotsArray[0] || '/placeholder-image.png'; // Sediakan gambar placeholder
+    const thumbnailUrl = screenshotsArray[0] || '/placeholder-image.png'; // Sediakan 
+    // gambar placeholder
+    const tagsArray = project.tags || [];
 
     return (
         <Tilt
@@ -40,7 +41,6 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
                 />
             </div>
 
-            {/* Konten Teks */}
             <div className="mt-4">
                 <h3 className="font-display text-xl font-bold text-amber-300">
                     {project.title}
@@ -50,9 +50,19 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
                 </p>
             </div>
 
+            <div className="mt-4 flex flex-wrap gap-2">
+                {tagsArray.map((tag, index) => (
+                    <span 
+                        key={index} 
+                        className="rounded-full bg-amber-400/10 px-2 py-1 text-xs font-semibold text-amber-300"
+                    >
+                        {tag}
+                    </span>
+                ))}
+            </div>
+
             <div className="flex-grow" />
 
-            {/* Link "See Details" BARU */}
             <div className="mt-4 flex items-center gap-2 text-amber-400">
                 <span className="font-semibold">See Details</span>
                 <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
