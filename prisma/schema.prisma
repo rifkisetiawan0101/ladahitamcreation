@@ -30,6 +30,7 @@ model Member {
   pictureUrl  String?
   content     String?
   screenshots String[]
+  socials     Json?
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }
