@@ -25,7 +25,7 @@ export default function LoginPage() {
             if (result?.error) {
                 setError('Invalid username or password');
             } else {
-                // Jika berhasil, arahkan ke dashboard admin
+                // Jika berhasil, arahkan ke dashboard
                 router.push('/admin/dashboard');
             }
         } catch (error) {
