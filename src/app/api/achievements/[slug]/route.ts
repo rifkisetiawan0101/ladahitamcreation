@@ -18,8 +18,8 @@ export async function PUT(request: Request, { params }: RouteParams) {
         },
     });
         revalidatePath('/admin/achievements');
-        revalidatePath('/#achievements');
         revalidatePath(`/members/${updatedAchievement.slug}`);
+        revalidatePath('/');
         return NextResponse.json(updatedAchievement);
     } catch (_error) {
         return NextResponse.json({ message: "Failed to update achievement" }, { status: 500 });
@@ -31,7 +31,7 @@ export async function DELETE(request: Request, { params }: RouteParams) {
         const { slug } = params;
         await prisma.achievement.delete({ where: { slug } });
         revalidatePath('/admin/achievements');
-        revalidatePath('/#achievements');
+        revalidatePath('/');
         return new NextResponse(null, { status: 204 });
     } catch (_error) {
         return NextResponse.json({ message: "Failed to delete achievement" }, { status: 500 });

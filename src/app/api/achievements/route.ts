@@ -14,7 +14,7 @@ export async function POST(request: Request) {
             },
         });
         revalidatePath('/admin/achievements');
-        revalidatePath('/#achievements');
+        revalidatePath('/');
         return NextResponse.json(newAchievement, { status: 201 });
     } catch (_error) {
         console.error("API POST Error:", _error);

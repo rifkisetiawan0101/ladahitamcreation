@@ -18,7 +18,7 @@ export async function POST(request: Request) {
             },
         });
         revalidatePath('/admin/projects');
-        revalidatePath('/#projects');
+        revalidatePath('/');
         return NextResponse.json(newProject, { status: 201 });
     } catch (_error) {
         console.error("API POST Error:", _error); 

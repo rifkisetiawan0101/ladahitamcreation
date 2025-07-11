@@ -22,7 +22,7 @@ export async function POST(request: Request) {
             },
         });
         revalidatePath('/admin/members');
-        revalidatePath('/#members');
+        revalidatePath('/');
         return NextResponse.json(newMember, { status: 201 });
     } catch (_error) {
         console.error("API POST Error:", _error);
