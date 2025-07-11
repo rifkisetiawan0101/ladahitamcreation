@@ -5,18 +5,29 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { Member } from '@prisma/client';
 import RichTextEditor from './RichTextEditor'; 
+import ImageUpload from './ImageUpload';
 
 // Update props untuk menerima data member (opsional)
 type MemberFormProps = {
     member?: Member;
 };
 
+type Socials = {
+    linkedin?: string;
+    behance?: string;
+    github?: string;
+    instagram?: string;
+    itch?: string;
+    youtube?: string;
+};
+
 export default function MemberForm({ member }: MemberFormProps) {
     const [name, setName] = useState('');
     const [slug, setSlug] = useState('');
     const [role, setRole] = useState('');
-    const [content, setContent] = useState('');
     const [pictureUrl, setPictureUrl] = useState('');
+    const [socials, setSocials] = useState<Socials>({});
+    const [content, setContent] = useState('');
     const [screenshots, setScreenshots] = useState('');
     const [isSubmitting, setIsSubmitting] = useState(false);
     const router = useRouter();
@@ -32,6 +43,10 @@ export default function MemberForm({ member }: MemberFormProps) {
             setScreenshots(Array.isArray(member.screenshots) ? member.screenshots.join(', ') : '');
         }
     }, [member]);
+    
+    const handleSocialChange = (platform: keyof Socials, value: string) => {
+        setSocials(prev => ({ ...prev, [platform]: value }));
+    };
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -94,20 +109,62 @@ export default function MemberForm({ member }: MemberFormProps) {
             />
         </div>
         <div>
-                <label className="block text-sm font-medium text-neutral-300">Content (Deskripsi Lengkap)</label>
-                <RichTextEditor
-                    content={content}
-                    onChange={(newContent) => setContent(newContent)}
+            <label htmlFor="pictureUrl" className="block text-sm font-medium text-neutral-300">Profile Picture URL</label>
+            <input
+                type="text"
+                id="pictureUrl"
+                value={pictureUrl}
+                onChange={(e) => setPictureUrl(e.target.value)}
+                className="mt-1 block w-full rounded-md ..."
+                placeholder="Atau upload file di bawah ini"
+            />
+            <div className="mt-2">
+                <ImageUpload 
+                    multiple={false}
+                    onUploadComplete={(urls) => {
+                        if (urls.length > 0) {
+                            setPictureUrl(urls[0]);
+                        }
+                    }} 
                 />
             </div>
-                <div>
-                <label htmlFor="trailerUrl" className="block text-sm font-medium text-neutral-300">YouTube Trailer URL</label>
-                <input type="text" id="trailerUrl" value={pictureUrl} onChange={(e) => setPictureUrl(e.target.value)} className="mt-1 block w-full rounded-md border-neutral-600 bg-neutral-800 text-white"/>
+        </div>
+        <fieldset className="space-y-4 rounded-lg border border-neutral-700 p-4">
+            <legend className="text-sm font-medium text-neutral-300 px-2">Social Links</legend>
+            <input type="text" placeholder="LinkedIn URL" value={socials.linkedin || ''} onChange={(e) => handleSocialChange('linkedin', e.target.value)} className="mt-1 block w-full rounded-md border-neutral-600 bg-neutral-800 text-white shadow-sm focus:border-amber-400 focus:ring focus:ring-amber-300 focus:ring-opacity-50" />
+            <input type="text" placeholder="Behance URL" value={socials.behance || ''} onChange={(e) => handleSocialChange('behance', e.target.value)} className="mt-1 block w-full rounded-md border-neutral-600 bg-neutral-800 text-white shadow-sm focus:border-amber-400 focus:ring focus:ring-amber-300 focus:ring-opacity-50" />
+            <input type="text" placeholder="Github URL" value={socials.github || ''} onChange={(e) => handleSocialChange('github', e.target.value)} className="mt-1 block w-full rounded-md border-neutral-600 bg-neutral-800 text-white shadow-sm focus:border-amber-400 focus:ring focus:ring-amber-300 focus:ring-opacity-50" />
+            <input type="text" placeholder="Instagram URL" value={socials.instagram || ''} onChange={(e) => handleSocialChange('instagram', e.target.value)} className="mt-1 block w-full rounded-md border-neutral-600 bg-neutral-800 text-white shadow-sm focus:border-amber-400 focus:ring focus:ring-amber-300 focus:ring-opacity-50" />
+            <input type="text" placeholder="Itch.io URL" value={socials.itch || ''} onChange={(e) => handleSocialChange('itch', e.target.value)} className="mt-1 block w-full rounded-md border-neutral-600 bg-neutral-800 text-white shadow-sm focus:border-amber-400 focus:ring focus:ring-amber-300 focus:ring-opacity-50" />
+            <input type="text" placeholder="Youtube URL" value={socials.youtube || ''} onChange={(e) => handleSocialChange('youtube', e.target.value)} className="mt-1 block w-full rounded-md border-neutral-600 bg-neutral-800 text-white shadow-sm focus:border-amber-400 focus:ring focus:ring-amber-300 focus:ring-opacity-50" />
+        </fieldset>
+        <div>
+            <label className="block text-sm font-medium text-neutral-300">Content/Bio Kalian</label>
+            <RichTextEditor
+                content={content}
+                onChange={(newContent) => setContent(newContent)}
+            />
+        </div>
+        <div>
+            <label htmlFor="screenshots" className="block text-sm font-medium text-neutral-300">Showcase Screenshot URLs (pisahkan dengan koma)</label>
+            <textarea
+                id="screenshots"
+                value={screenshots}
+                onChange={(e) => setScreenshots(e.target.value)}
+                rows={4}
+                className="mt-1 block w-full rounded-md ..."
+                placeholder="URL akan ditambahkan setelah upload..."
+            />
+            <div className="mt-2">
+                <ImageUpload 
+                    multiple={true}
+                    onUploadComplete={(urls) => {
+                        const newScreenshots = screenshots ? `${screenshots}, ${urls.join(', ')}` : urls.join(', ');
+                        setScreenshots(newScreenshots);
+                    }} 
+                />
             </div>
-            <div>
-                <label htmlFor="screenshots" className="block text-sm font-medium text-neutral-300">Screenshot URLs (pisahkan dengan koma)</label>
-                <textarea id="screenshots" value={screenshots} onChange={(e) => setScreenshots(e.target.value)} rows={5} className="mt-1 block w-full rounded-md border-neutral-600 bg-neutral-800 text-white"/>
-            </div>
+        </div>
         <div>
             <button
                 type="submit"

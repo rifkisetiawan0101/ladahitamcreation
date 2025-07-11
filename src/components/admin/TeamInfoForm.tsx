@@ -7,8 +7,9 @@ import { TeamInfo } from '@prisma/client';
 import ImageUpload from './ImageUpload';
 
 type Socials = {
-    linkedin?: string;
     itch?: string;
+    behance?: string;
+    linkedin?: string;
     instagram?: string;
 };
 
@@ -74,7 +75,14 @@ export default function TeamInfoForm({ teamInfo }: { teamInfo: TeamInfo }) {
                 placeholder="Or upload the file below"
             />
             <div className="mt-2">
-                <ImageUpload onUploadComplete={(url) => setLogoUrl(url)} />
+                <ImageUpload 
+                    multiple={false}
+                    onUploadComplete={(urls) => {
+                        if (urls.length > 0) {
+                            setLogoUrl(urls[0]);
+                        }
+                    }} 
+                />
             </div>
         </div>
         <div>
@@ -85,12 +93,13 @@ export default function TeamInfoForm({ teamInfo }: { teamInfo: TeamInfo }) {
             <label htmlFor="email" className="block text-sm font-medium text-neutral-300">Email</label>
             <input type="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} className="mt-1 block w-full rounded-md border-neutral-600 bg-neutral-800 text-white shadow-sm focus:border-amber-400 focus:ring focus:ring-amber-300 focus:ring-opacity-50" required />
         </div>
-            <fieldset className="space-y-4 rounded-lg border border-neutral-700 p-4">
-                <legend className="text-sm font-medium text-neutral-300 px-2">Social Links</legend>
-                <input type="text" placeholder="LinkedIn URL" value={socials.linkedin || ''} onChange={(e) => handleSocialChange('linkedin', e.target.value)} className="mt-1 block w-full rounded-md border-neutral-600 bg-neutral-800 text-white shadow-sm focus:border-amber-400 focus:ring focus:ring-amber-300 focus:ring-opacity-50" />
-                <input type="text" placeholder="Itch.io URL" value={socials.itch || ''} onChange={(e) => handleSocialChange('itch', e.target.value)} className="mt-1 block w-full rounded-md border-neutral-600 bg-neutral-800 text-white shadow-sm focus:border-amber-400 focus:ring focus:ring-amber-300 focus:ring-opacity-50" />
-                <input type="text" placeholder="Instagram URL" value={socials.instagram || ''} onChange={(e) => handleSocialChange('instagram', e.target.value)} className="mt-1 block w-full rounded-md border-neutral-600 bg-neutral-800 text-white shadow-sm focus:border-amber-400 focus:ring focus:ring-amber-300 focus:ring-opacity-50" />
-            </fieldset>
+        <fieldset className="space-y-4 rounded-lg border border-neutral-700 p-4">
+            <legend className="text-sm font-medium text-neutral-300 px-2">Social Links</legend>
+            <input type="text" placeholder="Itch.io URL" value={socials.itch || ''} onChange={(e) => handleSocialChange('itch', e.target.value)} className="mt-1 block w-full rounded-md border-neutral-600 bg-neutral-800 text-white shadow-sm focus:border-amber-400 focus:ring focus:ring-amber-300 focus:ring-opacity-50" />
+            <input type="text" placeholder="Behance URL" value={socials.behance || ''} onChange={(e) => handleSocialChange('behance', e.target.value)} className="mt-1 block w-full rounded-md border-neutral-600 bg-neutral-800 text-white shadow-sm focus:border-amber-400 focus:ring focus:ring-amber-300 focus:ring-opacity-50" />
+            <input type="text" placeholder="LinkedIn URL" value={socials.linkedin || ''} onChange={(e) => handleSocialChange('linkedin', e.target.value)} className="mt-1 block w-full rounded-md border-neutral-600 bg-neutral-800 text-white shadow-sm focus:border-amber-400 focus:ring focus:ring-amber-300 focus:ring-opacity-50" />
+            <input type="text" placeholder="Instagram URL" value={socials.instagram || ''} onChange={(e) => handleSocialChange('instagram', e.target.value)} className="mt-1 block w-full rounded-md border-neutral-600 bg-neutral-800 text-white shadow-sm focus:border-amber-400 focus:ring focus:ring-amber-300 focus:ring-opacity-50" />
+        </fieldset>
         <div>
             <button type="submit" disabled={isSubmitting} className="bg-amber-300 text-neutral-900 font-bold py-2 px-4 rounded-md hover:bg-amber-400 disabled:bg-neutral-500 disabled:cursor-not-allowed">
             {isSubmitting ? 'Saving...' : 'Save Changes'}
