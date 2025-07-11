@@ -14,7 +14,7 @@ export async function POST(request: Request) {
         });
         return NextResponse.json(newAchievement, { status: 201 });
     } catch (_error) {
-        console.error("API POST Error:", error);
+        console.error("API POST Error:", _error);
         return NextResponse.json({ message: "Failed to create achievement" }, { status: 500 });
     }
 }

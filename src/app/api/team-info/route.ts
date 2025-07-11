@@ -32,7 +32,7 @@ export async function PUT(request: Request) {
         });
         return NextResponse.json(updatedTeamInfo);
     } catch (_error) {
-        console.error("API PUT Error:", error);
+        console.error("API PUT Error:", _error);
         return NextResponse.json({ message: "Failed to update team info" }, { status: 500 });
     }
 }

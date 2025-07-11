@@ -11,12 +11,12 @@ export async function POST(request: Request) {
                 slug: data.slug,
                 role: data.role,
                 content: "",
-                screenshots: "",
+                screenshots: [],
             },
         });
         return NextResponse.json(newMember, { status: 201 });
     } catch (_error) {
-        console.error("API POST Error:", error);
+        console.error("API POST Error:", _error);
         return NextResponse.json({ message: "Failed to create member" }, { status: 500 });
     }
 }

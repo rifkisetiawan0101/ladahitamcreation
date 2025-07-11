@@ -1,6 +1,7 @@
 // src/app/api/projects/route.ts
 import prisma from '@/lib/prisma';
 import { NextResponse } from 'next/server';
+import { revalidatePath } from 'next/cache';
 
 export async function POST(request: Request) {
     try {
@@ -17,9 +18,12 @@ export async function POST(request: Request) {
             },
         });
 
+        revalidatePath('/admin/projects');
+        revalidatePath('/');
+
         return NextResponse.json(newProject, { status: 201 });
     } catch (_error) {
-        console.error("API Route Error:", error); 
+        console.error("API Route Error:", _error); 
         return NextResponse.json(
             { message: "Failed to create projects." },
             { status: 500 }
