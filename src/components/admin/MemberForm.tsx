@@ -41,7 +41,7 @@ export default function MemberForm({ member }: MemberFormProps) {
             });
 
             if (!response.ok) throw new Error('Failed to save member');
-
+            alert('Member updated successfully!');
             router.push('/admin/members');
             router.refresh();
         } catch (_error) {

@@ -41,7 +41,7 @@ export default function AchievementForm({ achievement }: AchievementProps) {
             });
 
             if (!response.ok) throw new Error('Failed to save achievement');
-
+            alert('Achievement updated successfully!');
             router.push('/admin/achievements');
             router.refresh();
         } catch (_error) {

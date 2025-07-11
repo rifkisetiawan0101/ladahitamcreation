@@ -30,8 +30,8 @@ export default function ProjectForm({ project }: ProjectFormProps) {
             setShortDescription(project.shortDescription);
             setContent(project.content || '');
             setTrailerUrl(project.trailerUrl || '');
-            setTags(project.tags);
-            setScreenshots(project.screenshots);
+            setTags(Array.isArray(project.tags) ? project.tags.join(', ') : project.tags);
+            setScreenshots(Array.isArray(project.screenshots) ? project.screenshots.join(', ') : project.screenshots);
         }
     }, [project]);
 
@@ -51,7 +51,7 @@ export default function ProjectForm({ project }: ProjectFormProps) {
             });
 
             if (!response.ok) throw new Error('Failed to save project');
-
+            alert('Project updated successfully!');
             router.push('/admin/projects');
             router.refresh();
         } catch (_error) {

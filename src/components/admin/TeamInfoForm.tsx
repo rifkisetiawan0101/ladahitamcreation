@@ -44,13 +44,11 @@ export default function TeamInfoForm({ teamInfo }: { teamInfo: TeamInfo }) {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ name, bio, email, logoUrl, socials }),
-        
             });
             
             if (!response.ok) throw new Error('Failed to save team info');
             alert('Team info updated successfully!');
             router.refresh();
-        
         } catch (_error) {
             console.error(_error);
             alert('Error updating team info.');
