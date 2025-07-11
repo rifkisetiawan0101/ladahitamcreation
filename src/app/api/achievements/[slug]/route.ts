@@ -1,10 +1,10 @@
 // src/app/api/achievements/[slug]/route.ts
 import prisma from '@/lib/prisma';
 import { NextResponse } from 'next/server';
+import { revalidatePath } from 'next/cache';
 
 type RouteParams = { params: { slug: string } };
 
-// Fungsi untuk UPDATE (PUT)
 export async function PUT(request: Request, { params }: RouteParams) {
     try {
         const { slug: currentSlug } = params;
@@ -17,13 +17,14 @@ export async function PUT(request: Request, { params }: RouteParams) {
                 description: data.description,
         },
     });
+        revalidatePath('/admin/achievements');
+        revalidatePath('/');
         return NextResponse.json(updatedAchievement);
     } catch (_error) {
         return NextResponse.json({ message: "Failed to update achievement" }, { status: 500 });
     }
 }
 
-// Fungsi untuk DELETE
 export async function DELETE(request: Request, { params }: RouteParams) {
     try {
         const { slug } = params;

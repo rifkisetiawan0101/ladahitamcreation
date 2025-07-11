@@ -1,6 +1,7 @@
 // src/app/api/members/route.ts
 import prisma from '@/lib/prisma';
 import { NextResponse } from 'next/server';
+import { revalidatePath } from 'next/cache';
 
 export async function POST(request: Request) {
     try {
@@ -14,6 +15,8 @@ export async function POST(request: Request) {
                 screenshots: [],
             },
         });
+        revalidatePath('/admin/members');
+        revalidatePath('/');
         return NextResponse.json(newMember, { status: 201 });
     } catch (_error) {
         console.error("API POST Error:", _error);

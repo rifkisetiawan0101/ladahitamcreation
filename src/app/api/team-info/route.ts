@@ -1,10 +1,10 @@
 // src/app/api/team-info/route.ts
 import prisma from '@/lib/prisma';
 import { NextResponse } from 'next/server';
+import { revalidatePath } from 'next/cache';
 
 const TEAM_INFO_ID = 'ladahitam_info';
 
-// Fungsi untuk mengambil data TeamInfo
 export async function GET() {
     try {
         const teamInfo = await prisma.teamInfo.findUnique({
@@ -26,10 +26,12 @@ export async function PUT(request: Request) {
                 name: data.name,
                 bio: data.bio,
                 email: data.email,
-                // logoUrl: data.logoUrl,
+                logoUrl: data.logoUrl,
                 socials: data.socials,
             },
         });
+        revalidatePath('/admin/team-info');
+        revalidatePath('/');
         return NextResponse.json(updatedTeamInfo);
     } catch (_error) {
         console.error("API PUT Error:", _error);

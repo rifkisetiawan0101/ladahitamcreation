@@ -17,16 +17,11 @@ export async function POST(request: Request) {
                 screenshots: data.screenshots,
             },
         });
-
         revalidatePath('/admin/projects');
         revalidatePath('/');
-
         return NextResponse.json(newProject, { status: 201 });
     } catch (_error) {
-        console.error("API Route Error:", _error); 
-        return NextResponse.json(
-            { message: "Failed to create projects." },
-            { status: 500 }
-        );
+        console.error("API POST Error:", _error); 
+        return NextResponse.json( { message: "Failed to create projects." }, { status: 500 } );
     }
 }
