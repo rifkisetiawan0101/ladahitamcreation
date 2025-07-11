@@ -13,11 +13,16 @@ export async function PUT(request: Request, { params }: RouteParams) {
             where: { slug },
             data: {
                 name: data.name,
+                slug: data.slug,
                 role: data.role,
+                content: data.content,
+                pictureUrl: data.pictureUrl,
+                screenshots: data.screenshots ? data.screenshots.split(',').map((ss: string) => ss.trim()) : [],
             },
         });
         revalidatePath('/admin/members');
-        revalidatePath('/');
+        revalidatePath('/#members');
+        revalidatePath(`/members/${updatedMember.slug}`);
         return NextResponse.json(updatedMember);
     } catch (_error) {
         console.error("API PUT Error:", _error);
@@ -29,6 +34,8 @@ export async function DELETE(request: Request, { params }: RouteParams) {
     try {
         const { slug } = params;
         await prisma.member.delete({ where: { slug } });
+        revalidatePath('/admin/members');
+        revalidatePath('/#members');
         return new NextResponse(null, { status: 204 });
     } catch (_error) {
         console.error("API DELETE Error:", _error);

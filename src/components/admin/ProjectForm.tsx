@@ -104,7 +104,7 @@ export default function ProjectForm({ project }: ProjectFormProps) {
             <textarea id="screenshots" value={screenshots} onChange={(e) => setScreenshots(e.target.value)} rows={5} className="mt-1 block w-full rounded-md border-neutral-600 bg-neutral-800 text-white"/>
         </div>
         <div>
-            <button type="submit" disabled={isSubmitting} className="bg-amber-300 text-neutral-900 font-bold py-2 px-4 rounded-md hover:bg-amber-400">
+            <button type="submit" disabled={isSubmitting} className="bg-amber-300 text-neutral-900 font-bold py-2 px-4 rounded-md hover:bg-amber-400 disabled:bg-neutral-500 disabled:cursor-not-allowed">
                 {isSubmitting ? 'Saving...' : (project ? 'Update Project' : 'Create Project')}
             </button>
         </div>

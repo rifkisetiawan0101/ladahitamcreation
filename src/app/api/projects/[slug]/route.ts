@@ -22,7 +22,8 @@ export async function PUT(request: Request, { params }: RouteParams) {
             },
         });
         revalidatePath('/admin/projects');
-        revalidatePath('/');
+        revalidatePath('/#projects');
+        revalidatePath(`/members/${updatedProject.slug}`);
         return NextResponse.json(updatedProject);
     } catch (_error) {
         console.error("API PUT Error:", _error);
@@ -34,6 +35,8 @@ export async function DELETE(request: Request, { params }: RouteParams) {
     try {
         const { slug } = params;
         await prisma.project.delete({ where: { slug } });
+        revalidatePath('/admin/projects');
+        revalidatePath('/#projects');
         return new NextResponse(null, { status: 204 }); 
     } catch (_error) {
         console.error("API DELETE Error:", _error);

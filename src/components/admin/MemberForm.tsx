@@ -4,6 +4,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { Member } from '@prisma/client';
+import RichTextEditor from './RichTextEditor'; 
 
 // Update props untuk menerima data member (opsional)
 type MemberFormProps = {
@@ -14,6 +15,9 @@ export default function MemberForm({ member }: MemberFormProps) {
     const [name, setName] = useState('');
     const [slug, setSlug] = useState('');
     const [role, setRole] = useState('');
+    const [content, setContent] = useState('');
+    const [pictureUrl, setPictureUrl] = useState('');
+    const [screenshots, setScreenshots] = useState('');
     const [isSubmitting, setIsSubmitting] = useState(false);
     const router = useRouter();
 
@@ -23,6 +27,9 @@ export default function MemberForm({ member }: MemberFormProps) {
             setName(member.name);
             setSlug(member.slug);
             setRole(member.role);
+            setContent(member.content || '');
+            setPictureUrl(member.pictureUrl || '');
+            setScreenshots(Array.isArray(member.screenshots) ? member.screenshots.join(', ') : '');
         }
     }, [member]);
 
@@ -37,7 +44,7 @@ export default function MemberForm({ member }: MemberFormProps) {
             const response = await fetch(apiEndpoint, {
                 method: httpMethod,
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ name, slug, role }),
+                body: JSON.stringify({ name, slug, role, content, pictureUrl, screenshots }),
             });
 
             if (!response.ok) throw new Error('Failed to save member');
@@ -86,6 +93,21 @@ export default function MemberForm({ member }: MemberFormProps) {
                 required
             />
         </div>
+        <div>
+                <label className="block text-sm font-medium text-neutral-300">Content (Deskripsi Lengkap)</label>
+                <RichTextEditor
+                    content={content}
+                    onChange={(newContent) => setContent(newContent)}
+                />
+            </div>
+                <div>
+                <label htmlFor="trailerUrl" className="block text-sm font-medium text-neutral-300">YouTube Trailer URL</label>
+                <input type="text" id="trailerUrl" value={pictureUrl} onChange={(e) => setPictureUrl(e.target.value)} className="mt-1 block w-full rounded-md border-neutral-600 bg-neutral-800 text-white"/>
+            </div>
+            <div>
+                <label htmlFor="screenshots" className="block text-sm font-medium text-neutral-300">Screenshot URLs (pisahkan dengan koma)</label>
+                <textarea id="screenshots" value={screenshots} onChange={(e) => setScreenshots(e.target.value)} rows={5} className="mt-1 block w-full rounded-md border-neutral-600 bg-neutral-800 text-white"/>
+            </div>
         <div>
             <button
                 type="submit"
