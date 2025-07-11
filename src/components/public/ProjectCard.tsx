@@ -37,7 +37,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
                 src={thumbnailUrl}
                 alt={`Thumbnail for ${project.title}`}
                 fill
-                className="object-cover transition-transform duration-500 group-hover:scale-105"
+                className="object-cover transition-transform duration-500 group-hover:scale-110"
                 />
             </div>
 
