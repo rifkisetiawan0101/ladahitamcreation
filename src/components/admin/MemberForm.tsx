@@ -19,6 +19,8 @@ type Socials = {
     instagram?: string;
     itch?: string;
     youtube?: string;
+    portfolio?: string;
+    cv?: string;
 };
 
 export default function MemberForm({ member }: MemberFormProps) {
@@ -138,6 +140,8 @@ export default function MemberForm({ member }: MemberFormProps) {
             <input type="text" placeholder="Instagram URL" value={socials.instagram || ''} onChange={(e) => handleSocialChange('instagram', e.target.value)} className="mt-1 block w-full rounded-md border-neutral-600 bg-neutral-800 text-white shadow-sm focus:border-amber-400 focus:ring focus:ring-amber-300 focus:ring-opacity-50" />
             <input type="text" placeholder="Itch.io URL" value={socials.itch || ''} onChange={(e) => handleSocialChange('itch', e.target.value)} className="mt-1 block w-full rounded-md border-neutral-600 bg-neutral-800 text-white shadow-sm focus:border-amber-400 focus:ring focus:ring-amber-300 focus:ring-opacity-50" />
             <input type="text" placeholder="Youtube URL" value={socials.youtube || ''} onChange={(e) => handleSocialChange('youtube', e.target.value)} className="mt-1 block w-full rounded-md border-neutral-600 bg-neutral-800 text-white shadow-sm focus:border-amber-400 focus:ring focus:ring-amber-300 focus:ring-opacity-50" />
+            <input type="text" placeholder="Portfolio URL" value={socials.portfolio || ''} onChange={(e) => handleSocialChange('portfolio', e.target.value)} className="mt-1 block w-full rounded-md border-neutral-600 bg-neutral-800 text-white shadow-sm focus:border-amber-400 focus:ring focus:ring-amber-300 focus:ring-opacity-50" />
+            <input type="text" placeholder="CV URL" value={socials.cv || ''} onChange={(e) => handleSocialChange('cv', e.target.value)} className="mt-1 block w-full rounded-md border-neutral-600 bg-neutral-800 text-white shadow-sm focus:border-amber-400 focus:ring focus:ring-amber-300 focus:ring-opacity-50" />
         </fieldset>
         <div>
             <label className="block text-sm font-medium text-neutral-300">Content/Bio Kalian</label>

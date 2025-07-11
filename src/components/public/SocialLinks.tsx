@@ -1,6 +1,6 @@
 // src/components/public/SocialLinks.tsx
 import Link from 'next/link';
-import { Linkedin, Github, Instagram, Youtube } from 'lucide-react';
+import { Linkedin, Github, Instagram, Youtube, FileUser, Files } from 'lucide-react';
 import { ItchIoIcon, BehanceIcon } from '@/assets/CustomIcons';
 
 type Socials = {
@@ -10,6 +10,8 @@ type Socials = {
     behance?: string;
     instagram?: string;
     youtube?: string;
+    portfolio?: string;
+    cv?: string;
 };
 
 // SVG Ikon bisa disimpan di sini atau di file terpisah
@@ -19,7 +21,9 @@ const iconMap: { [key in keyof Socials]: React.ElementType } = {
     itch: ItchIoIcon,
     behance: BehanceIcon,
     instagram: Instagram,
-    youtube: Youtube
+    youtube: Youtube,
+    portfolio: FileUser,
+    cv: Files
 };
 
 export default function SocialLinks({ socials }: { socials: Socials | null }) {
