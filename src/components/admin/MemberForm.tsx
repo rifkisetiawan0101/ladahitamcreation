@@ -61,7 +61,7 @@ export default function MemberForm({ member }: MemberFormProps) {
             const response = await fetch(apiEndpoint, {
                 method: httpMethod,
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ name, slug, role, content, pictureUrl, screenshots }),
+                body: JSON.stringify({ name, slug, role, content, pictureUrl, screenshots, socials, }),
             });
 
             if (!response.ok) throw new Error('Failed to save member');

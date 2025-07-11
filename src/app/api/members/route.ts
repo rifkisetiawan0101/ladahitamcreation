@@ -19,6 +19,7 @@ export async function POST(request: Request) {
                 content: data.content || "",
                 pictureUrl: data.pictureUrl || null,
                 screenshots: data.screenshots ? data.screenshots.split(',').map((ss: string) => ss.trim()) : [],
+                socials: data.socials,
             },
         });
         revalidatePath('/admin/members');

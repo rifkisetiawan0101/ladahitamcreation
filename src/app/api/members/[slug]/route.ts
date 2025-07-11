@@ -18,6 +18,7 @@ export async function PUT(request: Request, { params }: RouteParams) {
                 content: data.content,
                 pictureUrl: data.pictureUrl,
                 screenshots: data.screenshots ? data.screenshots.split(',').map((ss: string) => ss.trim()) : [],
+                socials: data.socials,
             },
         });
         revalidatePath('/admin/members');
