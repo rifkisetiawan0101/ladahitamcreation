@@ -1,25 +1,37 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'glmqkytupyqvzybtjltf.supabase.co',
-        port: '',
-        pathname: '/storage/v1/object/public/**',
-      },
-    ],
-  },
+import type { NextConfig } from 'next';
+import type { Configuration } from 'webpack';
 
-  eslint: {
-      // Warning: Ini akan menonaktifkan pengecekan ESLint saat build.
-      // Sebaiknya hanya digunakan jika Anda yakin kode Anda benar.
-      ignoreDuringBuilds: true,
-  },
+const nextConfig: NextConfig = {
+    images: {
+        remotePatterns: [
+            {
+                protocol: 'https',
+                hostname: 'glmqkytupyqvzybtjltf.supabase.co',
+                port: '',
+                pathname: '/storage/v1/object/public/**',
+            },
+        ],
+    },
 
-  typescript: {
-      ignoreBuildErrors: true,
-  },
+    eslint: {
+        ignoreDuringBuilds: true,
+    },
+
+    typescript: {
+        ignoreBuildErrors: true,
+    },
+
+    webpack(config: Configuration) {
+        if (config.module && config.module.rules) {
+            config.module.rules.push({
+                test: /\.svg$/i,
+                issuer: /\.[jt]sx?$/,
+                use: ['@svgr/webpack'],
+            });
+        }
+
+        return config;
+    },
 };
 
 module.exports = nextConfig;
