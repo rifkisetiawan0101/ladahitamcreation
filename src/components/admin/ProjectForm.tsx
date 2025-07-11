@@ -30,8 +30,8 @@ export default function ProjectForm({ project }: ProjectFormProps) {
             setShortDescription(project.shortDescription);
             setContent(project.content || '');
             setTrailerUrl(project.trailerUrl || '');
-            setTags(Array.isArray(project.tags) ? project.tags.join(', ') : project.tags);
-            setScreenshots(Array.isArray(project.screenshots) ? project.screenshots.join(', ') : project.screenshots);
+            setTags(Array.isArray(project.tags) ? project.tags.join(', ') : '');
+            setScreenshots(Array.isArray(project.screenshots) ? project.screenshots.join(', ') : '');
         }
     }, [project]);
 

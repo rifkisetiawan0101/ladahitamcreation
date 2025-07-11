@@ -16,9 +16,9 @@ export async function PUT(request: Request, { params }: RouteParams) {
                 slug: data.slug,
                 shortDescription: data.shortDescription,
                 content: data.content,
-                tags: data.tags,
+                tags: data.tags ? data.tags.split(',').map((tag: string) => tag.trim()) : [],
                 trailerUrl: data.trailerUrl,
-                screenshots: data.screenshots,
+                screenshots: data.screenshots ? data.screenshots.split(',').map((ss: string) => ss.trim()) : [],
             },
         });
         revalidatePath('/admin/projects');
