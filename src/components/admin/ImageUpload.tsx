@@ -7,9 +7,10 @@ import { UploadCloud } from 'lucide-react';
 type ImageUploadProps = {
     onUploadComplete: (urls: string[]) => void;
     multiple?: boolean;
+    uploadPath: string;
 };
 
-export default function ImageUpload({ onUploadComplete, multiple = false }: ImageUploadProps) {
+export default function ImageUpload({ onUploadComplete, multiple = false, uploadPath  }: ImageUploadProps) {
     const [uploading, setUploading] = useState(false);
     const [files, setFiles] = useState<FileList | null>(null);
 
@@ -30,10 +31,14 @@ export default function ImageUpload({ onUploadComplete, multiple = false }: Imag
 
         try {
             for (const file of Array.from(files)) {
-                const fileName = `${Date.now()}_${file.name}`;
+                const filePath = `${uploadPath}/${file.name}`;
+
                 const { error } = await supabase.storage
                     .from('ladahitam-assets')
-                    .upload(fileName, file);
+                    .upload(filePath, file, {
+                        cacheControl: '3600',
+                        upsert: true // <-- true: Timpa file jika namanya sama.
+                    });
 
                 if (error) {
                     throw new Error(`Failed to upload ${file.name}: ${error.message}`);
@@ -41,7 +46,7 @@ export default function ImageUpload({ onUploadComplete, multiple = false }: Imag
 
                 const { data: { publicUrl } } = supabase.storage
                     .from('ladahitam-assets')
-                    .getPublicUrl(fileName);
+                    .getPublicUrl(filePath);
                 
                 uploadedUrls.push(publicUrl);
             }

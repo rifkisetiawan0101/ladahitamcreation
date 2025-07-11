@@ -121,6 +121,7 @@ export default function MemberForm({ member }: MemberFormProps) {
             <div className="mt-2">
                 <ImageUpload 
                     multiple={false}
+                    uploadPath={`members/${member?.slug || 'new-member'}`}
                     onUploadComplete={(urls) => {
                         if (urls.length > 0) {
                             setPictureUrl(urls[0]);
@@ -158,6 +159,7 @@ export default function MemberForm({ member }: MemberFormProps) {
             <div className="mt-2">
                 <ImageUpload 
                     multiple={true}
+                    uploadPath={`members/${member?.slug || 'new-member'}`}
                     onUploadComplete={(urls) => {
                         const newScreenshots = screenshots ? `${screenshots}, ${urls.join(', ')}` : urls.join(', ');
                         setScreenshots(newScreenshots);

@@ -77,6 +77,7 @@ export default function TeamInfoForm({ teamInfo }: { teamInfo: TeamInfo }) {
             <div className="mt-2">
                 <ImageUpload 
                     multiple={false}
+                    uploadPath={`team-info/'}`}
                     onUploadComplete={(urls) => {
                         if (urls.length > 0) {
                             setLogoUrl(urls[0]);
