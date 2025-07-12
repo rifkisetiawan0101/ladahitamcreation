@@ -32,7 +32,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
             className="group flex h-full flex-col rounded-lg border border-amber-300/20 bg-neutral-800/50 p-4 backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-amber-400 hover:shadow-2xl hover:shadow-amber-500/20"
         >
             {/* Gambar Thumbnail */}
-            <div className="relative h-64 w-full overflow-hidden rounded-md">
+            <div className="relative h-64 sm:h-48 md:h-64 lg:h-96 w-full overflow-hidden rounded-md">
                 <Image
                 src={thumbnailUrl}
                 alt={`Thumbnail for ${project.title}`}

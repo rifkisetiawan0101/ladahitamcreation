@@ -77,9 +77,11 @@ export default async function HomePage() {
             <h2 className="font-display text-4xl text-center text-amber-300 mb-12">
             Hall of Fame
             </h2>
-            <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-x-12 gap-y-10">
+            <div className="flex flex-wrap justify-center gap-8">
                 {achievements.map((achievement) => (
-                    <AchievementItem key={achievement.id} achievement={achievement} />
+                    <div key={achievement.id} className="w-full max-w-2xl">
+                        <AchievementItem achievement={achievement} />
+                    </div>
                 ))}
             </div>
         </section>
