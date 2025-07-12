@@ -1,9 +1,11 @@
-import NextAuth from 'next-auth';
+import NextAuth, { NextAuthOptions } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import prisma from '@/lib/prisma';
 import bcrypt from 'bcryptjs';
 
-export const authOptions = {
+const SESSION_MAX_AGE = 1800; // 30 menit
+
+export const authOptions: NextAuthOptions = {
     providers: [
         CredentialsProvider({
             name: 'Credentials',
@@ -12,39 +14,49 @@ export const authOptions = {
                 password: { label: "Password", type: "password" }
             },
             async authorize(credentials) {
-                if (!credentials?.username || !credentials.password) {
-                    return null;
-                }
+                if (!credentials?.username || !credentials.password) return null;
 
-                // Cari user di database
                 const user = await prisma.user.findUnique({
                     where: { username: credentials.username }
                 });
+                if (!user) return null;
 
-                if (!user) {
-                    return null;
-                }
-
-                // Bandingkan password yang diinput dengan hash di database
                 const isPasswordCorrect = await bcrypt.compare(
                     credentials.password,
                     user.password
                 );
 
                 if (isPasswordCorrect) {
-                    // Jika benar, kembalikan data user (tanpa password)
-                    return { id: user.id, name: user.username };
+                    return { id: user.id, username: user.username };
                 }
-
                 return null;
             }
         })
     ],
-    // Tentukan halaman login kustom Anda
+    
+    session: {
+        strategy: 'jwt',
+        maxAge: SESSION_MAX_AGE,
+    },
+
+    callbacks: {
+        async jwt({ token, user }) {
+            if (user) {
+                token.id = user.id;
+            }
+            return token;
+        },
+        async session({ session, token }) {
+            if (session.user) {
+                session.user.id = token.id; // Error akan hilang di sini
+            }
+            return session;
+        },
+    },
+
     pages: {
         signIn: '/login',
     },
-    // Secret untuk mengamankan session
     secret: process.env.NEXTAUTH_SECRET,
 };
 
