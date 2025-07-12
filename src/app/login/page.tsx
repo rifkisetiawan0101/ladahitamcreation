@@ -26,7 +26,7 @@ export default function LoginPage() {
                 setError('Invalid username or password');
             } else {
                 // Jika berhasil, arahkan ke dashboard
-                router.push('/admin/dashboard');
+                router.push('/sanctum-sanctuarum/dashboard');
             }
         } catch (error) {
             setError('An error occurred. Please try again.');

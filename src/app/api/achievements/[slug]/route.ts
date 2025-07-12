@@ -17,7 +17,7 @@ export async function PUT(request: Request, { params }: RouteParams) {
                 description: data.description,
         },
     });
-        revalidatePath('/admin/achievements');
+        revalidatePath('/sanctum-sanctuarum/achievements');
         revalidatePath(`/members/${updatedAchievement.slug}`);
         revalidatePath('/');
         return NextResponse.json(updatedAchievement);
@@ -30,7 +30,7 @@ export async function DELETE(request: Request, { params }: RouteParams) {
     try {
         const { slug } = params;
         await prisma.achievement.delete({ where: { slug } });
-        revalidatePath('/admin/achievements');
+        revalidatePath('/sanctum-sanctuarum/achievements');
         revalidatePath('/');
         return new NextResponse(null, { status: 204 });
     } catch (_error) {

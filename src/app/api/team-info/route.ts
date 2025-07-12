@@ -30,7 +30,7 @@ export async function PUT(request: Request) {
                 socials: data.socials,
             },
         });
-        revalidatePath('/admin/team-info');
+        revalidatePath('/sanctum-sanctuarum/team-info');
         revalidatePath('/');
         return NextResponse.json(updatedTeamInfo);
     } catch (_error) {

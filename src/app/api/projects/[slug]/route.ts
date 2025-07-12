@@ -21,7 +21,7 @@ export async function PUT(request: Request, { params }: RouteParams) {
                 screenshots: data.screenshots ? data.screenshots.split(',').map((ss: string) => ss.trim()) : [],
             },
         });
-        revalidatePath('/admin/projects');
+        revalidatePath('/sanctum-sanctuarum/projects');
         revalidatePath(`/projects/${updatedProject.slug}`);
         revalidatePath('/');
         return NextResponse.json(updatedProject);
@@ -35,7 +35,7 @@ export async function DELETE(request: Request, { params }: RouteParams) {
     try {
         const { slug } = params;
         await prisma.project.delete({ where: { slug } });
-        revalidatePath('/admin/projects');
+        revalidatePath('/sanctum-sanctuarum/projects');
         revalidatePath('/');
         return new NextResponse(null, { status: 204 }); 
     } catch (_error) {

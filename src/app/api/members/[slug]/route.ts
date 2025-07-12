@@ -21,7 +21,7 @@ export async function PUT(request: Request, { params }: RouteParams) {
                 socials: data.socials,
             },
         });
-        revalidatePath('/admin/members');
+        revalidatePath('/sanctum-sanctuarum/members');
         revalidatePath(`/members/${updatedMember.slug}`);
         revalidatePath('/');
         return NextResponse.json(updatedMember);
@@ -35,7 +35,7 @@ export async function DELETE(request: Request, { params }: RouteParams) {
     try {
         const { slug } = params;
         await prisma.member.delete({ where: { slug } });
-        revalidatePath('/admin/members');
+        revalidatePath('/sanctum-sanctuarum/members');
         revalidatePath('/');
         return new NextResponse(null, { status: 204 });
     } catch (_error) {

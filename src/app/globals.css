@@ -27,3 +27,41 @@
         );
     }
 }
+
+.circular-loader {
+    position: absolute;
+    inset: -6px;
+    width: calc(100% + 12px);
+    height: calc(100% + 12px);
+    transform: rotate(-90deg);
+    opacity: 0;
+    /* Transisi untuk opacity saat muncul dan menghilang */
+    transition: opacity 0.5s ease-in-out;
+}
+
+.group:hover .circular-loader {
+    opacity: 1;
+}
+
+.loader-track, .loader-progress {
+    fill: none;
+    stroke-width: 5;
+}
+
+.loader-track {
+    stroke: rgba(252, 211, 77, 0.2);
+}
+
+.loader-progress {
+    stroke: #fcd34d;
+    stroke-linecap: round;
+    stroke-dasharray: 289;
+    stroke-dashoffset: 289;
+    /* Transisi untuk efek 'menggambar' dan 'menghapus' garis */
+    transition: stroke-dashoffset 0.8s ease-out;
+}
+
+/* Saat di-hover, cukup ubah nilai stroke-dashoffset */
+.group:hover .loader-progress {
+    stroke-dashoffset: 0;
+}
