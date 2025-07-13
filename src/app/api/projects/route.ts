@@ -17,7 +17,7 @@ export async function POST(request: Request) {
                 screenshots: data.screenshots ? data.screenshots.split(',').map((ss: string) => ss.trim()) : [],
             },
         });
-        revalidatePath('/sanctum-sanctuarum/projects');
+        revalidatePath('/arcanum/projects');
         revalidatePath('/');
         return NextResponse.json(newProject, { status: 201 });
     } catch (_error) {

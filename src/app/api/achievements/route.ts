@@ -13,7 +13,7 @@ export async function POST(request: Request) {
                 description: data.description,
             },
         });
-        revalidatePath('/sanctum-sanctuarum/achievements');
+        revalidatePath('/arcanum/achievements');
         revalidatePath('/');
         return NextResponse.json(newAchievement, { status: 201 });
     } catch (_error) {

@@ -9,5 +9,5 @@ export default withAuth({
 
 // Konfigurasi untuk melindungi semua halaman di bawah /admin
 export const config = {
-    matcher: ['/sanctum-sanctuarum/:path*'],
+    matcher: ['/arcanum/:path*'],
 };

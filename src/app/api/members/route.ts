@@ -22,7 +22,7 @@ export async function POST(request: Request) {
                 socials: data.socials,
             },
         });
-        revalidatePath('/sanctum-sanctuarum/members');
+        revalidatePath('/arcanum/members');
         revalidatePath('/');
         return NextResponse.json(newMember, { status: 201 });
     } catch (_error) {
