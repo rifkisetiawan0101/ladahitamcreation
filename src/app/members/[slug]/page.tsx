@@ -18,8 +18,6 @@ export default async function MemberDetailPage({ params }: MemberDetailPageProps
     }
 
     return (
-        <div className="container mx-auto px-4 py-12 md:py-20">
-            <MemberDetailClient member={member} />
-        </div>
+        <MemberDetailClient member={member} />
     );
 }

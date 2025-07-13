@@ -18,6 +18,11 @@ export default async function HomePage() {
     
     const socials = teamInfo.socials as { linkedin?: string; itch?: string; instagram?: string };
 
+    const isOdd = projects.length % 2 !== 0;
+    const projectItemWidth = isOdd 
+        ? "lg:w-[calc(33.33%-1.5rem)]" // Untuk 3 kolom
+        : "lg:w-[calc(50%-1.5rem)]";
+
     return (
         <div className="container relative mx-auto px-4">
         {/* Hero Section */}
@@ -53,9 +58,11 @@ export default async function HomePage() {
             <h2 className="font-display text-4xl text-center text-amber-300 mb-12">
                 Featured Projects
             </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8">
+            <div className="flex flex-wrap justify-center gap-6">
                 {projects.map((project) => (
-                    <ProjectCard key={project.id} project={project} />
+                    <div key={project.id} className={`w-full sm:w-[calc(50%-1.5rem)] ${projectItemWidth}`}>
+                        <ProjectCard project={project} />
+                    </div>
                 ))}
             </div>
         </section>
