@@ -43,6 +43,10 @@ export default function MemberForm({ member }: MemberFormProps) {
             setContent(member.content || '');
             setPictureUrl(member.pictureUrl || '');
             setScreenshots(Array.isArray(member.screenshots) ? member.screenshots.join(', ') : '');
+
+            if (member.socials && typeof member.socials === 'object') {
+                setSocials(member.socials as Socials);
+            }
         }
     }, [member]);
     
