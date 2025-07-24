@@ -83,13 +83,20 @@ This project follows the standard Next.js App Router structure to ensure scalabi
 
 ## 📸 Screenshots
 
-*(It is recommended to add screenshots of the homepage, a project detail page, and a few pages from the admin panel here)*
+**Homepage**
+![Home](screenshots/home-lh.png)
 
-**Homepage** `path/to/screenshot-home.png`
+**Projects Section**
+![Projects](screenshots/projects-lh.png)
 
-**Project Detail Page** `path/to/screenshot-project-detail.png`
+**Projects Detail Page**
+![Projects Detail](screenshots/projects-details-lh.jpeg)
 
-**Admin Panel - Project Management** `path/to/screenshot-admin.png`
+**Members Detail Page**
+![Members Detail](screenshots/members-details-lh.jpeg)
+
+**Admin Panel - Project Management**
+![Admin Panel](screenshots/admin-panel.jpeg)
 
 ## 📄 License
 
