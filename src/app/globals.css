@@ -4,16 +4,6 @@
 @tailwind components;
 @tailwind utilities;
 
-.sparkle {
-    position: fixed;
-    background-color: #fcd34d; /* Warna amber-300 */
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 20;
-    animation: fade-out 1s forwards;
-    box-shadow: 0 0 8px #fcd34d, 0 0 12px #f59e0b;
-}
-
 @keyframes fade-out {
     from {
         opacity: 1;
@@ -26,6 +16,20 @@
             calc((var(--random-y, 0.5) - 0.5) * 150px)
         );
     }
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.sparkle {
+    position: fixed;
+    background-color: #fcd34d; /* Warna amber-300 */
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 20;
+    animation: fade-out 1s forwards;
+    box-shadow: 0 0 8px #fcd34d, 0 0 12px #f59e0b;
 }
 
 .circular-loader {

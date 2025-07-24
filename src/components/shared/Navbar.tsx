@@ -3,9 +3,9 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 const navLinks = [
-    { name: 'Projects', href: '/#projects' },
-    { name: 'Members', href: '/#members' },
-    { name: 'Achievements', href: '/#achievements' },
+    { name: 'Projects', href: '#projects' },
+    { name: 'Members', href: '#members' },
+    { name: 'Achievements', href: '#achievements' },
 ];
 
 type NavbarProps = {
