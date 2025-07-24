@@ -45,4 +45,7 @@ create-admin.js
 *.tsbuildinfo
 next-env.d.ts
 
+# Next.js telemetry
+.next/cache/fetch-cache/
+
 /src/generated/prisma
